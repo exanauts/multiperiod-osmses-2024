@@ -5,46 +5,46 @@ tol = 1e-4
 DATA = [
     (
         "case30",
-        "data/case30/pglib_opf_case30_ieee.m", 
-        "data/case30/case30.bus", 
-        "data/case30/halfhour_30.Pd",     
+        "data/case30/pglib_opf_case30_ieee.m",
+        "data/case30/case30.bus",
+        "data/case30/halfhour_30.Pd",
         "data/case30/halfhour_30.Qd"
     ),
-    (
-        "case30",
-        "data/case30/pglib_opf_case30_ieee.m", 
-        "data/case30/case30.bus", 
-        "data/case30/halfhour_30.Pd",     
-        "data/case30/halfhour_30.Qd"
-    ),
-    (
-        "case118",
-        "data/case118/pglib_opf_case118_ieee.m", 
-        "data/case118/case118.bus", 
-        "data/case118/case118_onehour_168.Pd",     
-        "data/case118/case118_onehour_168.Qd"
-    ),
-    # ( # out of memoery
-    #     "case118",
-    #     "data/case118/pglib_opf_case118_ieee.m", 
-    #     "data/case118/case118.bus", 
-    #     "data/case118/case118_oneminute_10080.Pd",     
-    #     "data/case118/case118_oneminute_10080.Qd"
+    # (
+    #     "case30",
+    #     "data/case30/pglib_opf_case30_ieee.m",
+    #     "data/case30/case30.bus",
+    #     "data/case30/halfhour_30.Pd",
+    #     "data/case30/halfhour_30.Qd"
     # ),
     (
-        "case1354",
-        "data/case1354/pglib_opf_case1354_pegase.m", 
-        "data/case1354/case1354pegase.bus", 
-        "data/case1354/halfhour_30.Pd",     
-        "data/case1354/halfhour_30.Qd"
+        "case118",
+        "data/case118/pglib_opf_case118_ieee.m",
+        "data/case118/case118.bus",
+        "data/case118/case118_onehour_168.Pd",
+        "data/case118/case118_onehour_168.Qd"
     ),
-    (
-        "case9241",
-        "data/case9241/pglib_opf_case9241_pegase.m", 
-        "data/case9241/case9241pegase.bus", 
-        "data/case9241/halfhour_30.Pd",     
-        "data/case9241/halfhour_30.Qd"
+    ( # out of memoery
+        "case118",
+        "data/case118/pglib_opf_case118_ieee.m",
+        "data/case118/case118.bus",
+        "data/case118/case118_oneminute_10080.Pd",
+        "data/case118/case118_oneminute_10080.Qd"
     ),
+    # (
+    #     "case1354",
+    #     "data/case1354/pglib_opf_case1354_pegase.m",
+    #     "data/case1354/case1354pegase.bus",
+    #     "data/case1354/halfhour_30.Pd",
+    #     "data/case1354/halfhour_30.Qd"
+    # ),
+    # (
+    #     "case9241",
+    #     "data/case9241/pglib_opf_case9241_pegase.m",
+    #     "data/case9241/case9241pegase.bus",
+    #     "data/case9241/halfhour_30.Pd",
+    #     "data/case9241/halfhour_30.Qd"
+    # ),
 ]
 
 results = []
@@ -64,8 +64,8 @@ for (i, (name, net, bus, Pd, Qd)) in enumerate(DATA)
         # output_file = "jump_output",
         # print_timing_statistics = "yes"
     )
-    
-    model, vars = mpopf_model(net, bus, Pd, Qd; backend = CUDABackend())    
+
+    model, vars = mpopf_model(net, bus, Pd, Qd; backend = CUDABackend())
     tgpu = @elapsed rgpu = madnlp(
         model;
         tol = tol,
