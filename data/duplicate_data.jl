@@ -1,12 +1,12 @@
 using DelimitedFiles
 
 input = 30
-output = 180
+output = 360
 filename = "data/case9241/halfhour"
 Pd = readdlm("$(filename)_$input.Pd")
 Qd = readdlm("$(filename)_$input.Qd")
 
-for i in 1:3
+for i in 1:6
     revPd = Pd[:,end:-1:1]
     revQd = Qd[:,end:-1:1]
 
