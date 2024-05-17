@@ -785,7 +785,9 @@ version = "1.0.2"
 
 [[deps.HSL_jll]]
 deps = ["Artifacts", "CompilerSupportLibraries_jll", "JLLWrappers", "Libdl", "METIS_jll", "MPICH_jll", "MicrosoftMPI_jll", "Pkg", "libblastrampoline_jll"]
-path = "/home/mschanen/HSL_jll.jl-2023.11.7/"
+git-tree-sha1 = "fa22c5b0918e187f4d5535920f9f5fdddcc276c6"
+repo-rev = "main"
+repo-url = "git@github.com:exanauts/HSL_jll.jl.git"
 uuid = "017b0a0e-03f4-516a-9b91-836bbd1904dd"
 version = "2023.11.7+0"
 
