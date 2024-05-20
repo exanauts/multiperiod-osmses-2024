@@ -1,6 +1,13 @@
 using LaTeXTabulars, LaTeXStrings, CairoMakie, JLD2, Printf
 
-results = load("results/results.jld2","results")
+res_a100 = load("results/results_a100.jld2")
+res_gh200 = load("results/results_gh200.jld2")
+res_moonshot = load("results/results_moonshot.jld2")
+
+results = []
+results = push!(results, [res_a100["2"], res_a100["3"],res_a100["5"],res_a100["6"]])
+results = push!(results, [res_gh200["2"], res_gh200["3"], res_gh200["4"], res_gh200["5"], res_gh200["6"]])
+# results = [res_gh200["2"], res_gh200["3"], res_gh200["4"], res_gh200["5"], res_gh200["5"]]
 
 function varcon(n)
     if n < 1000
@@ -40,10 +47,9 @@ latex_tabular(
     ]
 )
 
-
-nvars = [d.nvar for d in results]
-tgpus = [d.statusgpu ? d.tgpu : NaN for d in results]
-tcpus = [d.statuscpu ? d.tcpu : NaN for d in results]
+nvars = [[d.nvar for d in result] for result in results]
+tgpus = [[d.statusgpu ? d.tgpu : NaN for d in result] for result in results]
+tcpus = [[d.statuscpu ? d.tcpu : NaN for d in result] for result in results]
 
 
 plt = Figure(size = (600, 300))
@@ -57,8 +63,9 @@ ax = Axis(
     yautolimitmargin = (.1, .1)
 )
 
-plot!(ax, nvars, tcpus; label = "cpu", marker = :circle)
-plot!(ax, nvars, tgpus; label = "gpu", marker = :diamond)
+plot!(ax, nvars[1], tcpus[1]; label = "cpu", marker = :circle)
+plot!(ax, nvars[1], tgpus[1]; label = "A100", marker = :diamond)
+plot!(ax, nvars[2], tgpus[2]; label = "GH200")
 
 axislegend(ax; position = :lt)
 
